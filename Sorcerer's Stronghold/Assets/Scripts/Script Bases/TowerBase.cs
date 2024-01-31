@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Stronghold.Base{
-    public class TowerBase : MonoBehaviour{
-        
+    [RequireComponent(typeof(CircleCollider2D))]
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class TowerBase : EntityBase{
+        public bool ResourceTower = false;
     }
 }
