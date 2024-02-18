@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -16,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private float saveRunSpeed;
     [SerializeField] float runSpeed = 20.0f;
     [SerializeField] float dashSpeed = 30.0f;
-
+ 
     // Start is called before the first frame update
     void Start()
     {
