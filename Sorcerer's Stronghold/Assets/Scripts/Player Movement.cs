@@ -8,11 +8,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D body;
     private Vector2 moveDirection;
-
+   
     float horizontal;
     float vertical;
-
-    bool canDash;
 
     private float saveRunSpeed;
     [SerializeField] float runSpeed = 20.0f;
@@ -22,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        canDash = true;
+       
     }
 
     // Update is called once per frame
