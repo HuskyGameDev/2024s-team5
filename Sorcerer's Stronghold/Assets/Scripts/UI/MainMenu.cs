@@ -7,8 +7,9 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject optionsMenu;
+    [SerializeField] GameObject playOverlay;
 
-    private enum MENU_TYPE {NONE, MAIN, OPTIONS};
+    private enum MENU_TYPE {NONE, MAIN, OPTIONS, PLAY};
     private bool inGame = false;
 
     private void Start()
@@ -29,7 +30,7 @@ public class MainMenu : MonoBehaviour
             }
             else
             {
-                setActiveMenu(MENU_TYPE.NONE);
+                setActiveMenu(MENU_TYPE.PLAY);
                 Time.timeScale = 1f;
             }
         }
@@ -45,7 +46,7 @@ public class MainMenu : MonoBehaviour
     //starts a new game
     public void startGame()
     {
-        setActiveMenu(MENU_TYPE.NONE);
+        setActiveMenu(MENU_TYPE.PLAY);
         inGame = true;
 
         //unfreeze time
@@ -69,6 +70,7 @@ public class MainMenu : MonoBehaviour
     {
         mainMenu.SetActive(false);
         optionsMenu.SetActive(false);
+        playOverlay.SetActive(false);
 
         switch(menuName)
         {
@@ -81,6 +83,10 @@ public class MainMenu : MonoBehaviour
 
             case MENU_TYPE.OPTIONS:
                 optionsMenu.SetActive(true);
+                break;
+
+            case MENU_TYPE.PLAY:
+                playOverlay.SetActive(true);
                 break;
         }
     }
