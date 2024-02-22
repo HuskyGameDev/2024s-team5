@@ -470,7 +470,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: e1cdd95e6f01d7b45a53c718b1792bd6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -30697,6 +30697,7 @@ GameObject:
   - component: {fileID: 1572432465}
   - component: {fileID: 1572432464}
   - component: {fileID: 1572432467}
+  - component: {fileID: 1572432468}
   m_Layer: 6
   m_Name: TestPlayer
   m_TagString: Untagged
@@ -30863,6 +30864,21 @@ MonoBehaviour:
   virtualCamera: {fileID: 1278502106}
   minZoom: 4
   maxZoom: 6
+--- !u!114 &1572432468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572432461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4809db626d5400541970a989a1ee4366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  building: {fileID: 5376750650014643512, guid: 4386e8ac80a32a340bf49771e76c2f66, type: 3}
+  width: 200
+  height: 200
 --- !u!1 &1790496996
 GameObject:
   m_ObjectHideFlags: 0
