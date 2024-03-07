@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Stronghold.Base;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : EntityBase
 {
+    [Header("Player Variables")]
     public Rigidbody2D body;
     private Vector2 moveDirection;
    
@@ -13,7 +15,6 @@ public class PlayerMovement : MonoBehaviour
     float vertical;
 
     private float saveRunSpeed;
-    [SerializeField] float runSpeed = 20.0f;
     [SerializeField] float dashSpeed = 30.0f;
  
     // Start is called before the first frame update
@@ -34,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        body.velocity = new Vector2(moveDirection.x * runSpeed, moveDirection.y * runSpeed);
+        body.velocity = new Vector2(moveDirection.x * this.speed, moveDirection.y * speed);
     }
 
 }

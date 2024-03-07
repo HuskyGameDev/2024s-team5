@@ -30,13 +30,13 @@ namespace Stronghold.Base{
         the variables to other scripts. 
         */
         [Header("Entity Stats")]
-        [SerializeField] private float maximumHealth = 10f;
-        [SerializeField] private float health = 10f;
-        [SerializeField] private float speed = 1f;
-        [SerializeField] private float damage = 2f;
-        [SerializeField] private Elements element = Elements.Normal;
-        [SerializeField] private float resistanceFactor = 0.5f;
-        [SerializeField] private float vulnerableFactor = 1.5f;
+        [SerializeField] protected float maximumHealth = 10f;
+        [SerializeField] protected float health = 10f;
+        [SerializeField] protected float speed = 1f;
+        [SerializeField] protected float damage = 2f;
+        public Elements element = Elements.Normal;
+        [SerializeField] protected float resistanceFactor = 0.5f;
+        [SerializeField] protected float vulnerableFactor = 1.5f;
 
         /*
         This will be a shared method across all entities. Anything that has a health
@@ -76,14 +76,14 @@ namespace Stronghold.Base{
         enemy may explode, or enter a second phase, etc. This method should always
         call die() at some point.
         */
-        private void onDeath(){
+        protected void onDeath(){
             die();
         }
 
         /*
         This method should always just destroy the game object. 
         */
-        private void die(){
+        protected void die(){
             Destroy(gameObject);
         }
     }

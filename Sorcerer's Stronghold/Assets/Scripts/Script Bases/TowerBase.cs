@@ -6,6 +6,6 @@ namespace Stronghold.Base{
     [RequireComponent(typeof(CircleCollider2D))]
     [RequireComponent(typeof(Rigidbody2D))]
     public class TowerBase : EntityBase{
-        public bool ResourceTower = false;
+        public bool resourceTower = false;
     }
 }
