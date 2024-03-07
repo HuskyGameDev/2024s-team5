@@ -83,9 +83,9 @@ MonoBehaviour:
   resistanceFactor: 0.5
   vulnerableFactor: 1.5
   passiveTimer: 5
-  preferredTarget: {fileID: 0}
   preferredElement: 0
   prefersResourceTowers: 0
+  preferredDetermination: 2
 --- !u!212 &-6964908345114899977
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -124,8 +124,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 447254287
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 00d09092edf543bd8987f5980eeff175, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
