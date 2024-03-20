@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class buildingSystem : MonoBehaviour
@@ -7,8 +8,6 @@ public class buildingSystem : MonoBehaviour
 
     /*********Script currently does not check for building material requirements 2/21/2024*********/
     /******Script currently allows you to place on top of things that it did not make 2/21/2024******/
-    /*********Script currently only places 1 type of tower "TestTower" see line 47 2/21/2024*********/
-    /******Script currently does not have a buildrange, if you can click it you can place it 2/21/2024******/
     /*********Script currently does not give any indication that build mode is active 2/21/2024*********/
 
     /*
@@ -20,18 +19,6 @@ public class buildingSystem : MonoBehaviour
     * Tag "PlayerBuilt" is used to check if an object can be destroyed
     * 
     * 
-    * To compensate for (0,0) being in the middle of the map
-    *   int x = Mathf.RoundToInt(mousePos.x) + width / 2;
-    *   int y = Mathf.RoundToInt(mousePos.y) + height / 2;
-    *   NOTE: You will want to subtract width /2 and height / 2 from x and y respectively to convert
-    *   back to unity coordinate system. i.e new Vector2(x - width  / 2, y - height / 2)
-    *  
-    * 
-    * 
-    * The implementation makes a 2d array the size of the gameworld to keep track of 
-    * where the player can build
-    * The array "buildArray" will contain a true at [x][y] if there is a building already there
-    * and a false if there is no building there
     * 
     * This implementation is not perfect
     * Currently it does not include objects like the chest in the start map
@@ -44,26 +31,33 @@ public class buildingSystem : MonoBehaviour
 
 
     //variables
-    public GameObject building; //this is the object that will be built, assigned in unity editor
-    [SerializeField] int width = 20;
-    [SerializeField] int height = 20;
-
-    /*
-     * buildArray key
-     * false: this is a free space, the player can build here
-     * true: The player has already built something here, they cannot place a new building**/
-    bool[,] buildArray; //keeps track of where things can be built
-    bool buildMode = false;
+    [SerializeField] private List<TowerTypes> towerList;
+    [SerializeField] private Rigidbody2D player;
+    private int index = 0;
+    private bool buildMode = false;
+    [SerializeField] private float buildRange = 8f;
 
     // Start is called before the first frame update
     void Start()
     {
-        //this makes the 2d array the same size as the game area on start
-        buildArray = new bool[width, height];
-
+  
     }
 
-    
+    //**
+    //changes selected tower to build
+    //**//
+    public void setBuildIndex(int index)
+    {
+        if (index > towerList.Count - 1)
+        {
+            this.index = index;
+        }
+        else
+        {
+            Debug.Log("No Such Tower");
+        } 
+            
+    }
 
     // Update is called once per frame
     void Update()
@@ -72,51 +66,77 @@ public class buildingSystem : MonoBehaviour
         {
             buildMode = !buildMode;
         }
+
+        //super temporary for further **use setBuildIndex(int index) for future**
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            index = 0; 
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            index = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            index = 2;
+        }
+
+        
+        
+
+
+        
+
+
         //build the object if mouse 0 is clicked
         if (buildMode && (Input.GetMouseButtonDown(0)))
         {
             //grabs position of mouse and converts it to a position in the world
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            int x = Mathf.RoundToInt(mousePos.x) + width / 2; //(0,0) is at center of map this corrects for that
-            int y = Mathf.RoundToInt(mousePos.y) + height / 2;
+            int x = Mathf.RoundToInt(mousePos.x); 
+            int y = Mathf.RoundToInt(mousePos.y);
             //make sure object is in game area
-            if (x >= 0 && y >= 0 && x < width && y < height)
-            {
-                //if object can be built
-                if (!buildArray[x, y])
-                {
-                    //build it
-                    GameObject newTower = Instantiate(building, new Vector2(x - width  / 2, y - height / 2), Quaternion.identity);
-                    newTower.name = "Tower: " + (x - width / 2) + "_" + (y - height / 2);
-                    newTower.tag = "PlayerBuilt"; //current test tower already has tag but for future towers it will be assigned on instantiation
-                    buildArray[x, y] = true;
+           
+            //raycast to get game object
+            RaycastHit2D buildHit = Physics2D.Raycast(mousePos, Vector2.zero);
+            bool canBuild = false;
+
+            float distanceFromPlayer = Vector2.Distance(player.position, new Vector2(x, y));
+            canBuild = distanceFromPlayer <= buildRange;
+            //if object can be built
+            if (buildHit.collider == null && canBuild)
+             {
+
+                Debug.Log("No collider hit. Can build here.");
+                //build it
+                GameObject newTower = Instantiate(towerList[index].prefab.gameObject, new Vector2(x, y), Quaternion.identity);
+                newTower.name = "Tower: " + (x) + "_" + (y );
+                newTower.tag = "PlayerBuilt"; //current test tower already has tag but for future towers it will be assigned on instantiation
                     
-                }
+             }
           
-            }
+            
         }
         if (buildMode && (Input.GetMouseButtonDown (1)))
         {
-            //grabs position of mouse and converts it to a position in the world
+            //grabs position of mouse
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            int x = Mathf.RoundToInt(mousePos.x) + width / 2; //(0,0) is at center of map this corrects for that
-            int y = Mathf.RoundToInt(mousePos.y) + height / 2;
-            //make sure object is in game area
-            if (x >= 0 && y >= 0 && x < width && y < height)
-            {
-                //check that object is there
-                if (buildArray[x, y])
-                {
-                    //uses raycast to get actual game object
-                    RaycastHit2D findIt = Physics2D.Raycast(mousePos, Vector2.zero);
-                    if(findIt.collider != null && findIt.collider.gameObject.tag == "PlayerBuilt")
-                    {
-                        Destroy(findIt.collider.gameObject);
-                        buildArray[x, y] = false;
-                    }
+            int x = Mathf.RoundToInt(mousePos.x);
+            int y = Mathf.RoundToInt(mousePos.y);
+            bool canBuild = false;
+
+            float distanceFromPlayer = Vector2.Distance(player.position, new Vector2(x, y));
+            canBuild = distanceFromPlayer <= buildRange;
+            //uses raycast to get actual game object
+            RaycastHit2D findIt = Physics2D.Raycast(mousePos, Vector2.zero);
+           if(findIt.collider != null && findIt.collider.gameObject.tag == "PlayerBuilt" && canBuild)
+           {
+                Destroy(findIt.collider.gameObject);
+                       
+           }
                    
-                }
-            }
+                
+            
         }
     }
 }
