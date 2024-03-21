@@ -1,11 +1,5 @@
 {
   "dependencies": {
-    "com.github.nc5432.2dnavigation": {
-      "version": "file:/home/nc543/Documents/Unity/nc543's 2D Pathfinding/Packages/2dNavigation",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
-    },
     "com.unity.2d.animation": {
       "version": "9.0.4",
       "depth": 1,
