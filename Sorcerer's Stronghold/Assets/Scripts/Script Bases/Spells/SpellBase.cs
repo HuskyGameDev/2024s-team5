@@ -37,9 +37,9 @@ namespace Stronghold.Base
         }
 
         //the elemental attribute this spell will use when attacking enemies
-        [SerializeField] protected EntityBase.Elements spellElement = EntityBase.Elements.Null;
+        [SerializeField] public EntityBase.Elements spellElement = EntityBase.Elements.Null;
 
-        [SerializeField] protected float baseDamage = 0f;
+        [SerializeField] public float baseDamage = 0f;
 
         //the public structure to build spells with
         public SpellEffects effect = SpellEffects.Null;
@@ -50,30 +50,16 @@ namespace Stronghold.Base
 
         //how long before the spell can be cast again in seconds (I think)
         public float spellCooldown = 0f;
-        private float currentTimer = 0f;
 
         //casts the spell using the above specifications
-        public void castSpell()
+        public void castSpell(GameObject caster)
         {
-            //spell target will determine how the player "fires" the spell
-            if(currentTimer <= 0)
-            {
-                //cast spell and reset cooldown
-                SpellTargetBase.castOnTarget(this);
-                currentTimer = spellCooldown;
-            }
+            //cast the spell, a lot gets handled in the SpellTargetBase
+            SpellTargetBase.castOnTarget(this, caster);
 
             //spell trigger will determine how the spell object activates its effect (probably instatiate an object with the trigger/effect base)
 
             //spell effect will actually do the damage or whatever
-        }
-
-        private void FixedUpdate()
-        {
-            if(currentTimer > 0) 
-            {
-                currentTimer -= Time.fixedDeltaTime;
-            }
         }
     }
 }

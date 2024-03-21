@@ -8,17 +8,17 @@ namespace Stronghold.Base
     public class SpellTargetBase : MonoBehaviour
     {
         //SpellBase.SpellTargets target, int numberOfTargets, GameObject caster
-        public static void castOnTarget(SpellBase spell)
+        public static void castOnTarget(SpellBase spell, GameObject caster)
         {
             switch (spell.target)
             {
                 case SpellBase.SpellTargets.Multiple:
-                    createSpellObject(spell.numberOfTargets, spell.target, spell.gameObject, spell.obj);
+                    createSpellObject(spell.numberOfTargets, spell.target, caster, spell);
                     break;
 
                 //all other types have just 1 target location they need
                 default: 
-                    createSpellObject(1, spell.target, spell.gameObject, spell.obj);
+                    createSpellObject(1, spell.target, caster, spell);
                     break;
             }
         }
@@ -33,10 +33,10 @@ namespace Stronghold.Base
 
             Vector3 temp2 = Camera.main.ScreenToWorldPoint(temp);
 
-            return new Vector2(temp2.x, temp2.y);
+            return (temp2 - caster.transform.position);
         }
 
-        private static void createSpellObject(int number, SpellBase.SpellTargets target, GameObject caster, GameObject obj)
+        private static void createSpellObject(int number, SpellBase.SpellTargets target, GameObject caster, SpellBase spell)
         {
             //TODO: need some way to pause this for multi selection
             for (int i = 0; i < number; i++) 
@@ -44,10 +44,13 @@ namespace Stronghold.Base
                 Vector2 temp = getLocation(target, caster);
 
                 //instantiate objects
-                Instantiate(obj, new Vector3(temp.x, temp.y, 0), Quaternion.identity);
+                GameObject spellObject =  Instantiate(spell.obj, parent: caster.transform);
 
+                spellObject.GetComponent<Rigidbody2D>().AddForce(temp.normalized*5);
 
                 //attach trigger and effect
+                SpellTriggerBase trigBase = spellObject.AddComponent<SpellTriggerBase>();
+                trigBase.setValues(spell.baseDamage, spell.spellElement, spell.effect);
 
                 //create visual and aduio effects
 
