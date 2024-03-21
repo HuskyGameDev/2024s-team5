@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47dd583a2aeed1a41913effd6724df13, type: 3}
   m_Name: test tower 3
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 3420774806632768912, guid: 843b9ddcd1319e4468d3fcba8bd014fa, type: 3}
