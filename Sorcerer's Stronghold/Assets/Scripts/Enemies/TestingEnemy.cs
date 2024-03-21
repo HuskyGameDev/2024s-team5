@@ -4,5 +4,7 @@ using UnityEngine;
 using Stronghold.Base;
 
 public class TestingEnemy: EnemyBase{
-    
+    void Start(){
+        getTarget();
+    }
 }

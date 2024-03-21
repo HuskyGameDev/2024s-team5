@@ -1,6 +1,6 @@
 {
   "name": "com.github.nc5432.2dnavigation",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "displayName": "2D Navigation",
   "description": "This is a simple implimentation of the A* pathfinding algorithm for 2D games.",
   "unity": "2022.3",

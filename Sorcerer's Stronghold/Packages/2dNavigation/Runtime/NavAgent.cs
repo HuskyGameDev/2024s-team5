@@ -18,6 +18,7 @@ namespace nc543.Nav2D{
             if (pathFound){
                 path = newPath;
                 StopCoroutine("followPath");
+                targetIndex = 0;
                 StartCoroutine("followPath");
             }
         }
