@@ -856,21 +856,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9969e3291f50ce6c9aad78f4b17ae77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockingMask:
-    serializedVersion: 2
-    m_Bits: 512
-  gridSize: {x: 100, y: 100}
-  nodeSize: 1
-  walkableRegions:
-  - terrainMask:
-      serializedVersion: 2
-      m_Bits: 8
-    terrainPenalty: 0
-  obstacleAvoidanceStrength: 10
-  smoothWeights: 1
-  smoothing: 1
-  collisionDebug: 0
-  onlyDisplayPath: 0
 --- !u!4 &312211758
 Transform:
   m_ObjectHideFlags: 0
@@ -31354,8 +31339,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4809db626d5400541970a989a1ee4366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerList: []
-  player: {fileID: 0}
+  towerList:
+  - {fileID: 11400000, guid: 03d106dc459b070459ae58ce01fe03a6, type: 2}
+  - {fileID: 11400000, guid: 5e3231ead54073244b452db7233c9764, type: 2}
+  - {fileID: 11400000, guid: 51e9880308b441349a54f31a225236f1, type: 2}
+  player: {fileID: 1572432466}
   buildRange: 8
 --- !u!114 &1572432469
 MonoBehaviour:
