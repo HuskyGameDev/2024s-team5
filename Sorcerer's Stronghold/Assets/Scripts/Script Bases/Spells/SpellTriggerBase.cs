@@ -23,16 +23,16 @@ namespace Stronghold.Base
             //if the hit object is an enemy, damage it
             try
             {
-                if (effect == SpellBase.SpellEffects.InstantDamage)
-                {
-                    EntityBase entity = collision.gameObject.GetComponent<EntityBase>();
-                    entity.alterHealth(-damage, element);
-                }
-                else if (effect == SpellBase.SpellEffects.Heal)
-                {
-                    EntityBase entity = collision.gameObject.GetComponent<EntityBase>();
-                    entity.alterHealth(damage, element);
-                }
+            if (effect == SpellBase.SpellEffects.InstantDamage)
+            {
+                EntityBase entity = collision.gameObject.GetComponent<EntityBase>();
+                entity.alterHealth(-damage, element);
+            }
+            else if (effect == SpellBase.SpellEffects.Heal)
+            {
+                EntityBase entity = collision.gameObject.GetComponent<EntityBase>();
+                entity.alterHealth(damage, element);
+            }
             }
             catch (NullReferenceException e)
             {
