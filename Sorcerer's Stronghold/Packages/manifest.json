@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.github.nc5432.2dnavigation": "file:/home/nc543/Documents/Unity/nc543's 2D Pathfinding/Packages/2dNavigation",
     "com.unity.cinemachine": "2.9.7",
     "com.unity.collab-proxy": "2.2.0",
     "com.unity.feature.2d": "2.0.0",
