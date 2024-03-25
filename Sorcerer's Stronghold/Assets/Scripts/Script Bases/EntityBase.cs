@@ -70,6 +70,10 @@ namespace Stronghold.Base{
             }
         }
 
+        public float getHealth(){
+            return health;
+        }
+
         /*
         This method allows for different death behaviors. Individual scripts can
         override this method to have unique behavior. Instead of just dieing, an

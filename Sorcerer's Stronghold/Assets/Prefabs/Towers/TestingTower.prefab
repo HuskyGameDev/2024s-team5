@@ -9,13 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6364215793321003671}
+  - component: {fileID: -3826825651008679281}
   - component: {fileID: 1370544232449895423}
   - component: {fileID: 4196085976856020073}
-  - component: {fileID: -3826825651008679281}
   - component: {fileID: -8270235482103790605}
+  - component: {fileID: 2609035697567426423}
   m_Layer: 0
   m_Name: TestingTower
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,6 +36,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-3826825651008679281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895576659651407327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f7be87774d62bfd6a1f8b65231fb47f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resist: 00000000000000000000000002000000000000000400000002000000
+  vulnerable: 000000000000000003000000040000000500000000000000
+  maximumHealth: 10
+  health: 10
+  speed: 1
+  damage: 2
+  element: 1
+  resistanceFactor: 0.5
+  vulnerableFactor: 1.5
+  range: 10
+  sightBox: {fileID: 4196085976856020073}
+  targetMode: 0
+  resourceTower: 0
 --- !u!50 &1370544232449895423
 Rigidbody2D:
   serializedVersion: 4
@@ -50,7 +76,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -61,7 +87,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!58 &4196085976856020073
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -97,28 +123,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &-3826825651008679281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1895576659651407327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f7be87774d62bfd6a1f8b65231fb47f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resist: 00000000000000000000000002000000000000000400000002000000
-  vulnerable: 000000000000000003000000040000000500000000000000
-  maximumHealth: 10
-  health: 10
-  speed: 1
-  damage: 2
-  element: 1
-  resistanceFactor: 0.5
-  vulnerableFactor: 1.5
-  ResourceTower: 0
 --- !u!212 &-8270235482103790605
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -157,8 +161,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1141402477
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5c148db61b2a28cf6879b3af15d58ad5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -171,3 +175,48 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &2609035697567426423
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895576659651407327}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.011, y: 0.943}
+    newSize: {x: 10.11, y: 9.43}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.011, y: 0.943}
+  m_EdgeRadius: 0

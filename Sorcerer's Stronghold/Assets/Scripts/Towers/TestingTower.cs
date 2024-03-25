@@ -4,5 +4,7 @@ using UnityEngine;
 using Stronghold.Base;
 
 public class TestingTower: TowerBase{
-    
+    void FixedUpdate(){
+        target = getFavoredEnemy();
+    }
 }
