@@ -9,11 +9,13 @@ namespace Stronghold.Base{
     public class TowerBase : EntityBase{
         [SerializeField] protected float range = 10f;
         [SerializeField] protected Collider2D sightBox; 
+        public float attackSpeed = 1f;
         public int targetMode = 0;
         public bool resourceTower = false;
 
         protected List<EnemyBase> targetableEnemies = new List<EnemyBase>();
         protected EnemyBase target;
+        float timer = 0f;
 
         void Start(){
             Data.database.towers.Add(this);
@@ -21,6 +23,14 @@ namespace Stronghold.Base{
                 ((CircleCollider2D) sightBox).radius = range;
             }else if (sightBox.GetType() == typeof(BoxCollider2D)){
                 ((BoxCollider2D) sightBox).size = new Vector2(range, range);
+            }
+        }
+
+        void Update(){
+            timer += Time.deltaTime;
+            while (timer >= attackSpeed){
+                timer -= attackSpeed;
+                attack();
             }
         }
 
@@ -96,5 +106,7 @@ namespace Stronghold.Base{
                 }
             }
         }
+    
+        protected void attack(){}
     }
 }
