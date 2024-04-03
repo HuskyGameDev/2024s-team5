@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4484496538212470323}
   - component: {fileID: -6964908345114899977}
   - component: {fileID: 4893911724641917698}
-  - component: {fileID: 7571240117741195700}
+  - component: {fileID: 8716276863230725364}
   m_Layer: 6
   m_Name: TestingEnemy
   m_TagString: Untagged
@@ -154,7 +154,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &7571240117741195700
+--- !u!61 &8716276863230725364
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,12 +190,12 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.91, y: 2.64}
+    oldSize: {x: 0.7234849, y: 1}
     newSize: {x: 1.91, y: 2.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.91, y: 2.64}
+  m_Size: {x: 0.7234849, y: 1}
   m_EdgeRadius: 0

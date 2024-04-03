@@ -38,6 +38,8 @@ namespace Stronghold.Base{
         [SerializeField] protected float resistanceFactor = 0.5f;
         [SerializeField] protected float vulnerableFactor = 1.5f;
 
+        protected bool alive = true;
+
         /*
         This will be a shared method across all entities. Anything that has a health
         bar can be damaged, or healed, by calling alterHealth. Damage should have
@@ -74,6 +76,10 @@ namespace Stronghold.Base{
             return health;
         }
 
+        public bool isAlive(){
+            return alive;
+        }
+
         /*
         This method allows for different death behaviors. Individual scripts can
         override this method to have unique behavior. Instead of just dieing, an
@@ -81,6 +87,7 @@ namespace Stronghold.Base{
         call die() at some point.
         */
         protected void onDeath(){
+            alive = false;
             die();
         }
 

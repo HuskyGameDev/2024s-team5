@@ -15,7 +15,6 @@ namespace Stronghold.Base{
 
         protected List<EnemyBase> targetableEnemies = new List<EnemyBase>();
         protected EnemyBase target;
-        float timer = 0f;
 
         void Start(){
             Data.database.towers.Add(this);
@@ -23,14 +22,6 @@ namespace Stronghold.Base{
                 ((CircleCollider2D) sightBox).radius = range;
             }else if (sightBox.GetType() == typeof(BoxCollider2D)){
                 ((BoxCollider2D) sightBox).size = new Vector2(range, range);
-            }
-        }
-
-        void Update(){
-            timer += Time.deltaTime;
-            while (timer >= attackSpeed){
-                timer -= attackSpeed;
-                attack();
             }
         }
 
@@ -61,7 +52,7 @@ namespace Stronghold.Base{
                     int targetIndex = -1;
                     for (int i = 0; i < targetableEnemies.Count; i++){
                         float dist = Vector2.Distance(transform.position, targetableEnemies[i].gameObject.transform.position);
-                        if (dist < distance){
+                        if (dist < distance && targetableEnemies[i].isAlive()){
                             distance = dist;
                             targetIndex = i;
                         }
@@ -106,7 +97,5 @@ namespace Stronghold.Base{
                 }
             }
         }
-    
-        protected void attack(){}
     }
 }
