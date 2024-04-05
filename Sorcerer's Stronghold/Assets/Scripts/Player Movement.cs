@@ -9,6 +9,8 @@ public class PlayerMovement : EntityBase
 {
     [Header("Player Variables")]
     public Rigidbody2D body;
+    [SerializeField] private SpriteRenderer render;
+    [SerializeField] private Animator animator;
     private Vector2 moveDirection;
    
     float horizontal;
@@ -21,20 +23,26 @@ public class PlayerMovement : EntityBase
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-       
+        
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
         moveDirection = new Vector2(horizontal, vertical).normalized;
-    }
 
-    private void FixedUpdate()
-    {
+        if (moveDirection.x < 0){
+            render.flipX = true;
+            animator.SetBool("moving", true);
+        }else if (moveDirection.x > 0){
+            render.flipX = false;
+            animator.SetBool("moving", true);
+        }else{
+            animator.SetBool("moving", false);
+        }
+
         body.velocity = new Vector2(moveDirection.x * this.speed, moveDirection.y * speed);
     }
 

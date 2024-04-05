@@ -50,5 +50,5 @@ MonoBehaviour:
   target: 3
   numberOfTargets: 1
   trigger: 1
-  obj: {fileID: 3260357126651669295, guid: 80d831bf5e9cc8f45ad7f388e837d149, type: 3}
+  obj: {fileID: 3173993193718447184, guid: 571ab560635535f4f9d37672b9b7c831, type: 3}
   spellCooldown: 1
