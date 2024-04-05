@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Stronghold.Base{
-    public class EntityBase : MonoBehaviour{
+    public abstract class EntityBase : MonoBehaviour{
         //These are the elements added in the game
         public enum Elements{
             Null,
@@ -86,10 +86,7 @@ namespace Stronghold.Base{
         enemy may explode, or enter a second phase, etc. This method should always
         call die() at some point.
         */
-        protected void onDeath(){
-            alive = false;
-            die();
-        }
+        protected abstract void onDeath();
 
         /*
         This method should always just destroy the game object. 

@@ -9,6 +9,7 @@ namespace Stronghold.Base{
     public class TowerBase : EntityBase{
         [SerializeField] protected float range = 10f;
         [SerializeField] protected Collider2D sightBox; 
+        [SerializeField] protected Transform fireLoc;
         public float attackSpeed = 1f;
         public int targetMode = 0;
         public bool resourceTower = false;
@@ -96,6 +97,13 @@ namespace Stronghold.Base{
                     return null;
                 }
             }
+        }
+
+        protected override void onDeath(){
+            alive = false;
+            Data.database.towers.Remove(this);
+            Debug.Log("Tower Died");
+            die();
         }
     }
 }

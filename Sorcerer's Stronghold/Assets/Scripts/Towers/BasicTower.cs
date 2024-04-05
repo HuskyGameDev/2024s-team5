@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Stronghold.Base;
 
-public class TestingTower: TowerBase{
+public class BasicTower: TowerBase{
 
     [SerializeField] private GameObject projectile;
     float timer = 0f;
@@ -19,7 +19,7 @@ public class TestingTower: TowerBase{
     void attack(){
         EnemyBase target = getFavoredEnemy();
         if (target != null){
-            BasicAttack shot = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<BasicAttack>();
+            BasicAttack shot = Instantiate(projectile, fireLoc.position, Quaternion.identity).GetComponent<BasicAttack>();
             shot.setTarget(target.gameObject);
         }
     }

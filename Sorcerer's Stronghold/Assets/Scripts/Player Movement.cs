@@ -38,4 +38,7 @@ public class PlayerMovement : EntityBase
         body.velocity = new Vector2(moveDirection.x * this.speed, moveDirection.y * speed);
     }
 
+    protected override void onDeath(){
+
+    }
 }

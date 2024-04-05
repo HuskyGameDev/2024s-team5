@@ -9,10 +9,12 @@ namespace Stronghold.Base{
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(NavAgent))]
     public class EnemyBase : EntityBase{
+        [SerializeField] protected float attackRange = 0.5f;
+        [SerializeField] protected float attackSpeed = 1f;
         [SerializeField] protected float passiveTimer = 5f;
         [SerializeField] protected Elements preferredElement;
         [SerializeField] protected bool prefersResourceTowers;
-        //This determines how far out of a 
+        //This determines how far out of the way an enemy will go to attack something it prefers
         [SerializeField] protected float preferredDetermination = 2f;
         protected EntityBase currentTarget;
         private float timer = 0f;
@@ -57,6 +59,11 @@ namespace Stronghold.Base{
             }
             currentTarget = targ;
             navigation.target = targ.gameObject.transform;
+        }
+
+        protected override void onDeath(){
+            alive = false;
+            die();
         }
     }
 }
