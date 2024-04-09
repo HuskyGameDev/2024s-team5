@@ -76,6 +76,11 @@ namespace Stronghold.Base{
             return health;
         }
 
+        public float getMaxHealth()
+        {
+            return maximumHealth;
+        }
+
         public bool isAlive(){
             return alive;
         }
