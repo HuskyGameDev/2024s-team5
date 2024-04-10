@@ -52,7 +52,7 @@ public class TargetingBase : MonoBehaviour
                 spellObject.GetComponent<Rigidbody2D>().AddForce(targetLocation.normalized * spell.spellSpeed);
 
             //destroy this gameobject after 1 seconds
-            spellObject.GetComponent<TargetingBase>().destroyShot(spellObject, 5);
+            spellObject.GetComponent<TargetingBase>().destroyShot(spellObject, spell.decayTime);
 
             //wait for next click before continuing
         }

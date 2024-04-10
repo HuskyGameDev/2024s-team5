@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerBuilt
   - Enemy
+  - SpellBook
   layers:
   - Default
   - TransparentFX

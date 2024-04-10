@@ -15,17 +15,23 @@ public class Spell : MonoBehaviour
     //this is damage, healing, durability and things of that nature depending on what the spells effects are
     [SerializeField] public float strength = 0f;
 
+    //how many "projectiles" this spell 'fires" (not necessarily projectiles or firing I just don't know how to word it better)
     [SerializeField] public int numberOfCasts = 1;
 
     //the elemental attribute this spell will use
     [SerializeField] public EntityBase.Elements spellElement = EntityBase.Elements.Null;
 
+    //how long until you can cast this spell again
     [SerializeField] float cooldownTime = 0f;
+
+    //how quickly this spell moves
     [SerializeField] public float spellSpeed = 5;
+
+    //how long until this spell is destroyed (incase it isn't destroyed by something else)
+    [SerializeField] public float decayTime = 1;
 
     private EffectBase eb;
     private TargetingBase tb;
-
     private float currentTimer;
 
     private void Start()

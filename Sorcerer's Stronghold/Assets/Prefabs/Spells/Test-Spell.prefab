@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2799573694369542206}
   - component: {fileID: 4758980616691915146}
   m_Layer: 7
-  m_Name: Spell
+  m_Name: Test-Spell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
