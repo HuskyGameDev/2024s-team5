@@ -16,6 +16,9 @@ public class Spell : MonoBehaviour
     //this is damage, healing, durability and things of that nature depending on what the spells effects are
     [SerializeField] public float strength = 0f;
 
+    //this affects the strength of secondary effects (they'll be tagged with an s in EffectBase)
+    [SerializeField] public float secondaryStrength = 0f;
+
     //how many "projectiles" this spell 'fires" (not necessarily projectiles or firing I just don't know how to word it better)
     [SerializeField] public int numberOfCasts = 1;
 

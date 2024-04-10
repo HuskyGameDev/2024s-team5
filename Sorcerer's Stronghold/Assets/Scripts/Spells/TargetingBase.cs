@@ -9,8 +9,8 @@ public class TargetingBase : MonoBehaviour
     //can just hover over these to see which index they correspond to
     //these are the different targeting methods
     //e's mark things that are exclusive with something
-    //m's mark the various shapes for multi projectile spells (can work with single projectiles as well it just might not do anything fancy)
-    public enum Targets { PIERCING, AOE_CIRCLE, m_RADIAL, m_WAVE, SEEK_ENEMIES, e_SELF, e_m_ENEMY, e_m_MOUSE};
+    //m's mark the various shapes for multi projectile spells (can work with single projectiles as well it just might not do anything fancy), multishot can work with others too they'll just all move together
+    public enum Targets { AOE_CIRCLE, m_RADIAL, m_WAVE, e_m_SEEK_ENEMIES, e_SELF, e_MOUSE};
 
     //similar to the above targets but you MUST have one of these as this determines the spawn location of the spell object
     public enum SpawnLocation { m_SPAWNPLAYER, m_SPAWNMOUSE, m_SPAWNENEMY };
@@ -68,16 +68,18 @@ public class TargetingBase : MonoBehaviour
 
             spellObject.transform.position = instantiateAt;
 
-            //move spell towards target if its set as projectile
+            //apply force towards the target
             if(spell.moveType == MoveType.PROJECTILE)
                 spellObject.GetComponent<Rigidbody2D>().AddForce((targetLocation - instantiateAt).normalized * spell.spellSpeed);
+
+            //move the spell towards target and stop once reaching it
             if (spell.moveType == MoveType.POSITION)
             {
                 spellObject.GetComponent<TargetingBase>().targetLocation = targetLocation;
                 spellObject.GetComponent<TargetingBase>().goToTarget = true;
             }
 
-            //destroy this gameobject after 1 seconds
+            //destroy this gameobject after a variable number of seconds
             spellObject.GetComponent<TargetingBase>().destroyShot(spellObject, spell.decayTime);
 
             //wait for next click before continuing
@@ -88,7 +90,7 @@ public class TargetingBase : MonoBehaviour
     private Vector2 findTargetLocation(GameObject caster, Vector2 mouseLocation)
     {
         //returns the position of the mouse in world coordinates
-        if(activeTargets[(int)Targets.e_m_MOUSE])
+        if(activeTargets[(int)Targets.e_MOUSE])
         {
             Vector3 temp = Input.mousePosition;
 

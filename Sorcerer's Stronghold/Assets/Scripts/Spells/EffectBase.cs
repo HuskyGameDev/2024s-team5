@@ -9,12 +9,15 @@ public class EffectBase : MonoBehaviour
 {
     //can just hover over these to see which index they correspond to
     //these are the different effects a spell can have, e's mark things that are exclusive with something
-    public enum Effects {eDAMAGE, eHEAL, CREATEWALL, CREATETOWER, ePUSH, ePULL};
+    public enum Effects {eDAMAGE, eHEAL, CREATEWALL, CREATETOWER, e_s_PUSH, e_s_PULL, s_PIERCING};
 
     //each index corresponds to the effects listed above
     private bool[] activeEffects = new bool[100];
 
     private Spell spell;
+
+    //keeps track of how many collisions this spell has had for things like piercing
+    private int hitCounter = 0;
 
     //will turn the desired effects on this object
     public void turnOnEffects(Effects[] desiredEffects)
@@ -63,5 +66,39 @@ public class EffectBase : MonoBehaviour
 
         //then destroy the spell object
         Destroy(this.gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //make sure we don't collide with player or other spells
+        if (collision.gameObject.layer != LayerMask.NameToLayer("Spell") && collision.gameObject.layer != LayerMask.NameToLayer("Player"))
+        {
+            hitCounter++;
+
+            //if the hit object is an enemy, damage it
+            try
+            {
+                if (activeEffects[(int)Effects.eDAMAGE] && collision.gameObject.tag == "Enemy")
+                {
+                    EntityBase entity = collision.gameObject.GetComponent<EntityBase>();
+                    entity.alterHealth(-spell.strength, spell.spellElement);
+                }
+                else if (activeEffects[(int)Effects.eHEAL] && collision.gameObject.tag == "PlayerBuilt")
+                {
+                    EntityBase entity = collision.gameObject.GetComponent<EntityBase>();
+                    entity.alterHealth(spell.strength, spell.spellElement);
+                }
+
+            }
+            catch (NullReferenceException e)
+            {
+                Debug.LogWarning("The object you hit doesn't have the entityBase component");
+            }
+
+            //then destroy the spell object
+            if (!activeEffects[(int) Effects.s_PIERCING] || hitCounter >= spell.secondaryStrength)
+                Destroy(this.gameObject);
+        }
+
     }
 }
