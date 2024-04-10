@@ -44375,7 +44375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6627e871f9112e43abd61bf6ba9d290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effects: 0000000006000000
+  effects: 04000000
   targets: 05000000
   spawnLocation: 0
   moveType: 1

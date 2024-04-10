@@ -42,32 +42,6 @@ public class EffectBase : MonoBehaviour
 
     //define various effect methods
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //if the hit object is an enemy, damage it
-        try
-        {
-            if (activeEffects[(int)Effects.eDAMAGE] && collision.gameObject.tag == "Enemy")
-            {
-                EntityBase entity = collision.gameObject.GetComponent<EntityBase>();
-                entity.alterHealth(-spell.strength, spell.spellElement);
-            }
-            else if (activeEffects[(int)Effects.eHEAL] && collision.gameObject.tag == "PlayerBuilt")
-            {
-                EntityBase entity = collision.gameObject.GetComponent<EntityBase>();
-                entity.alterHealth(spell.strength, spell.spellElement);
-            }
-
-        }
-        catch (NullReferenceException e)
-        {
-            Debug.LogWarning("The object you hit doesn't have the entityBase component");
-        }
-
-        //then destroy the spell object
-        Destroy(this.gameObject);
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //make sure we don't collide with player or other spells
@@ -78,12 +52,31 @@ public class EffectBase : MonoBehaviour
             //if the hit object is an enemy, damage it
             try
             {
-                if (activeEffects[(int)Effects.eDAMAGE] && collision.gameObject.tag == "Enemy")
+                //if colliding with enemy...
+                if(collision.gameObject.tag == "Enemy")
                 {
-                    EntityBase entity = collision.gameObject.GetComponent<EntityBase>();
-                    entity.alterHealth(-spell.strength, spell.spellElement);
+                    //damage enemy
+                    if (activeEffects[(int)Effects.eDAMAGE])
+                    {
+                        EntityBase entity = collision.gameObject.GetComponent<EntityBase>();
+                        entity.alterHealth(-spell.strength, spell.spellElement);
+                    }
+
+                    //push or pull enemy
+                    if (activeEffects[(int)Effects.e_s_PUSH])
+                    {
+                        Rigidbody2D entity = collision.gameObject.GetComponent<Rigidbody2D>();
+                        entity.AddForce(this.GetComponent<Rigidbody2D>().velocity.normalized * spell.secondaryStrength);
+                    }
+                    else if (activeEffects[(int)Effects.e_s_PULL])
+                    {
+                        Rigidbody2D entity = collision.gameObject.GetComponent<Rigidbody2D>();
+                        entity.AddForce(-this.GetComponent<Rigidbody2D>().velocity.normalized * spell.secondaryStrength);
+                    }
                 }
-                else if (activeEffects[(int)Effects.eHEAL] && collision.gameObject.tag == "PlayerBuilt")
+
+                //if colliding with player built structure heal it
+                if (activeEffects[(int)Effects.eHEAL] && collision.gameObject.tag == "PlayerBuilt")
                 {
                     EntityBase entity = collision.gameObject.GetComponent<EntityBase>();
                     entity.alterHealth(spell.strength, spell.spellElement);
