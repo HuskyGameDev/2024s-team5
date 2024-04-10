@@ -11,6 +11,7 @@ public class Spell : MonoBehaviour
     [SerializeField] EffectBase.Effects[] effects;
     [SerializeField] TargetingBase.Targets[] targets;
     [SerializeField] public TargetingBase.SpawnLocation spawnLocation;
+    [SerializeField] public TargetingBase.MoveType moveType;
 
     //this is damage, healing, durability and things of that nature depending on what the spells effects are
     [SerializeField] public float strength = 0f;
@@ -36,13 +37,14 @@ public class Spell : MonoBehaviour
 
     private void Start()
     {
-        eb = gameObject.AddComponent<EffectBase>();
-        tb = gameObject.AddComponent<TargetingBase>();
+        eb = GetComponent<EffectBase>();
+        tb = GetComponent<TargetingBase>();
 
-        setValues();
+        updateValues();
     }
 
-    public void setValues()
+    //clears all values and then sets the appropriate values on targeting and effect bases
+    public void updateValues()
     {
         eb.turnOnEffects(effects);
         tb.turnOnTargets(targets);
@@ -53,6 +55,9 @@ public class Spell : MonoBehaviour
     {
         if (currentTimer <= 0)
         {
+            //this is for testing during runtime in the editor, should be safe to comment it out for release
+            updateValues();
+
             //create a copy of this object going towards target
             tb.deploySpell(caster, mouseLocation, this.gameObject);
 

@@ -19,7 +19,14 @@ public class EffectBase : MonoBehaviour
     //will turn the desired effects on this object
     public void turnOnEffects(Effects[] desiredEffects)
     {
-        foreach(Effects e in desiredEffects)
+        //clear all previous targets incase this gets called during runtime (most likely from editor changes during testing)s
+        for (int i = 0; i < activeEffects.Length; i++)
+        {
+            activeEffects[i] = false;
+        }
+
+        //turn on the desired effects
+        foreach (Effects e in desiredEffects)
         {
             activeEffects[(int) e] = true;
         }
