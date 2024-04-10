@@ -36,13 +36,12 @@ public class SpellBook : MonoBehaviour
     //casts a spell by a given name
     public void castSpell(string name)
     {
-        Spell currentSpell;
+        Spell currentSpell = null;
 
         //if the spell exists fire it, otherwise print to debug log
         if(knownSpells.TryGetValue(name, out currentSpell))
         {
-            //WIP switch this out for actual target (most likely mouse position)
-            currentSpell.fireSpell(new Vector2(0,0));
+            currentSpell.fireSpell(this.gameObject, Input.mousePosition);
         }
         else
         {
