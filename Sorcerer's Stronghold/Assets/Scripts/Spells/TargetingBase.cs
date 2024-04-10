@@ -15,14 +15,7 @@ public class TargetingBase : MonoBehaviour
     //similar to the above targets but you MUST have one of these as this determines the spawn location of the spell object
     public enum SpawnLocation { e_SPAWNPLAYER, e_m_SPAWNMOUSE, e_m_SPAWNENEMY };
 
-    //will make all things here private once I confirm they work, tweak them through the Spell script---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
     private Spell spell;
-
-    //this is how many objects to cast, set higher than 1 for multi casting (make sure to select a targeting method with an m though)
-    [SerializeField] float spellSpeed = 5;
-
-    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     //each index corresponds to the effects listed above
     private bool[] activeTargets = new bool[100];
@@ -36,7 +29,7 @@ public class TargetingBase : MonoBehaviour
         }
     }
 
-    private void Awake()
+    private void Start()
     {
         spell = GetComponent<Spell>();
     }
@@ -46,15 +39,17 @@ public class TargetingBase : MonoBehaviour
     {
         for(int i = 0; i < spell.numberOfCasts; i++)
         {
+            //instantiate the spell and send it out (if needed) currently only spawns from player
+            GameObject spellObject = Instantiate(spellBullet, parent: caster.transform);
+
             //find the position to return (self, which enemies, which mouse positions, etc)
             Vector2 targetLocation = findTargetLocation(caster, mouseLocation);
 
-            //instantiate the spell and send it out (if needed) currently only spawns from player
-            GameObject spellObject = Instantiate(spellBullet, parent: caster.transform, position: findInstatiateLocation(caster, mouseLocation), rotation: Quaternion.identity);
+            spellObject.transform.position = findInstatiateLocation(caster, mouseLocation);
 
             //if not targeting self or none launch towards target
             if (!activeTargets[(int) Targets.e_SELF] && !activeTargets[(int)Targets.e_NONE])
-                spellObject.GetComponent<Rigidbody2D>().AddForce(targetLocation.normalized * spellSpeed);
+                spellObject.GetComponent<Rigidbody2D>().AddForce(targetLocation.normalized * spell.spellSpeed);
 
             //destroy this gameobject after 1 seconds
             spellObject.GetComponent<TargetingBase>().destroyShot(spellObject, 5);
@@ -75,7 +70,7 @@ public class TargetingBase : MonoBehaviour
         }
 
         if (activeTargets[(int)Targets.e_SELF])
-        {
+        {  
             return caster.transform.position;
         }
 

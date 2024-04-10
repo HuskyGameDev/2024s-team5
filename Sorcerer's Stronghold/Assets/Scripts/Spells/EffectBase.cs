@@ -25,7 +25,7 @@ public class EffectBase : MonoBehaviour
         }
     }
 
-    private void Awake()
+    private void Start()
     {
         spell = GetComponent<Spell>();
     }
@@ -47,6 +47,7 @@ public class EffectBase : MonoBehaviour
                 EntityBase entity = collision.gameObject.GetComponent<EntityBase>();
                 entity.alterHealth(spell.strength, spell.spellElement);
             }
+
         }
         catch (NullReferenceException e)
         {
@@ -54,7 +55,6 @@ public class EffectBase : MonoBehaviour
         }
 
         //then destroy the spell object
-        Debug.Log("destroyed");
         Destroy(this.gameObject);
     }
 }

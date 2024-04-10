@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class SpellBook : MonoBehaviour
@@ -36,7 +37,7 @@ public class SpellBook : MonoBehaviour
     //casts a spell by a given name
     public void castSpell(string name)
     {
-        Spell currentSpell = null;
+        Spell currentSpell;
 
         //if the spell exists fire it, otherwise print to debug log
         if(knownSpells.TryGetValue(name, out currentSpell))
