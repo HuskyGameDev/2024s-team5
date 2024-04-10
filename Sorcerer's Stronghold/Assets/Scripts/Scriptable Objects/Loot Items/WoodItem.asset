@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de6e34227fc17164abf8d27522463e6a, type: 3}
   m_Name: WoodItem
   m_EditorClassIdentifier: 
+  prefab: {fileID: 3381485499702970470, guid: fd60082a9ac9b464598443cc922e1f34, type: 3}
   lootName: Wood
   lootIcon: {fileID: 808031110, guid: 8ca65e3ec44c3af4f853fc466f2fe6c4, type: 3}
   description: Default Wood Item

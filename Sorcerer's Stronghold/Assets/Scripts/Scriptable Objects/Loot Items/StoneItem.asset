@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de6e34227fc17164abf8d27522463e6a, type: 3}
   m_Name: StoneItem
   m_EditorClassIdentifier: 
+  prefab: {fileID: 39585425392752851, guid: 3872b45fb81427f4183c289f8fff5360, type: 3}
   lootName: Stone
   lootIcon: {fileID: -940405384, guid: 8ca65e3ec44c3af4f853fc466f2fe6c4, type: 3}
   description: Default Stone Item
