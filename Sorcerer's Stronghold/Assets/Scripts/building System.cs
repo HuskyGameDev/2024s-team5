@@ -148,13 +148,14 @@ public class buildingSystem : MonoBehaviour
             else
             {
                 Debug.Log("Collider hit, can not build here");
+                Debug.Log("Can't build because " + buildHit.collider  + " is blocking");
             }
           
             
         }
         if (buildMode && (Input.GetMouseButtonDown (1)))
         {
-            //grabs position of mouse
+            
             
             bool canBuild = false;
 
@@ -165,7 +166,8 @@ public class buildingSystem : MonoBehaviour
             RaycastHit2D findIt = Physics2D.Raycast(mousePos, Vector2.zero);
            if(findIt.collider != null && findIt.collider.gameObject.tag == "PlayerBuilt" && canBuild)
            {
-                Debug.Log("Collider hit");
+                Debug.Log("Collider hit time to delete");
+                Debug.Log(findIt.rigidbody);
                 Destroy(findIt.collider.gameObject);
                        
            }
