@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47dd583a2aeed1a41913effd6724df13, type: 3}
   m_Name: BasicTower
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6364215793321003671, guid: 1b6f2c80a7b5d033aa04ff1f20940757, type: 3}
+  prefab: {fileID: 1895576659651407327, guid: 1b6f2c80a7b5d033aa04ff1f20940757, type: 3}
+  shadow: {fileID: 2359745396679649875, guid: 686db2915ab69012b8f4e56892ada2e5, type: 3}
