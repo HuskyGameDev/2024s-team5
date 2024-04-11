@@ -98,7 +98,11 @@ public class buildingSystem : MonoBehaviour
                     c.a = 0.5f;
                     sr.color = c;
                 }
-                
+                Collider2D ghostCollider = ghostTower.GetComponent<Collider2D>();
+                if (ghostCollider != null)
+                {
+                    ghostCollider.enabled = false;
+                }
             }
         }
         else
