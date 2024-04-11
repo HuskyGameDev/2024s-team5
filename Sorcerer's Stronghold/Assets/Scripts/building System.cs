@@ -78,14 +78,15 @@ public class buildingSystem : MonoBehaviour
         {
             index = 0; 
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            index = 1;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            index = 2;
-        }
+        //theres only one tower rn
+        //if (Input.GetKeyDown(KeyCode.Alpha2))
+        //{
+        //    index = 1;
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha3))
+        //{
+        //    index = 2;
+       // }
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         int x = Mathf.RoundToInt(mousePos.x);
