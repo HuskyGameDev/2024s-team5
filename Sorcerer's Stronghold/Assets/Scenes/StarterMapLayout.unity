@@ -538,7 +538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towers: []
   enemies:
-  - {fileID: 1868931643}
+  - {fileID: 0}
   player:
   - {fileID: 1572432464}
 --- !u!4 &233824413
@@ -31598,17 +31598,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1868931643 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6709072448996601577, guid: fdaec933e4a76c4fda32ec04530d61fc, type: 3}
-  m_PrefabInstance: {fileID: 779017034}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 222a0564d93d75ce6aa74fdaa0a0df8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1886854303
 GameObject:
   m_ObjectHideFlags: 0
@@ -36595,7 +36584,7 @@ GameObject:
   - component: {fileID: 7771372511541189552}
   - component: {fileID: 8817050567830662359}
   m_Layer: 5
-  m_Name: Option 3
+  m_Name: Back Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36908,7 +36897,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Option 3
+  m_text: Back
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -37485,7 +37474,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7771372511541189552}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 882542992897164206}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: closeOptionsMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &8832418375368836165
 RectTransform:
   m_ObjectHideFlags: 0
