@@ -5,7 +5,7 @@ using UnityEngine;
 namespace nc543.Nav2D{
     public class NavAgent : MonoBehaviour{
         public Transform target;
-        float speed = 5;
+        public float speed = 5;
         [SerializeField] float pathRefresh = .25f;
         Vector2[] path;
         int targetIndex;

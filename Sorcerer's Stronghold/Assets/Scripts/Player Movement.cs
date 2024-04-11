@@ -19,6 +19,10 @@ public class PlayerMovement : EntityBase
     private float saveRunSpeed;
     [SerializeField] float dashSpeed = 30.0f;
  
+    void Awake(){
+        Data.database.player.Add(this);
+    }
+
     // Start is called before the first frame update
     void Start()
     {

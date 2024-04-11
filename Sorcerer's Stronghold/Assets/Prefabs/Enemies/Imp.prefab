@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6224745824119117208}
-  - component: {fileID: 6709072448996601577}
+  - component: {fileID: 7138604402172455951}
   - component: {fileID: 7876693606622092587}
   - component: {fileID: 2792927065121346040}
   - component: {fileID: 4615634555012133166}
@@ -37,7 +37,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6709072448996601577
+--- !u!114 &7138604402172455951
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,14 +46,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3626626577563303427}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 222a0564d93d75ce6aa74fdaa0a0df8e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8888f553373fad5c4ac59b6f96b692d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   resist: 00000000000000000000000002000000000000000400000002000000
   vulnerable: 000000000000000003000000040000000500000000000000
   maximumHealth: 10
   health: 10
-  speed: 1
+  speed: 5
   damage: 2
   element: 2
   resistanceFactor: 0.5
@@ -61,7 +61,7 @@ MonoBehaviour:
   attackRange: 1.6
   attackSpeed: 1
   passiveTimer: 5
-  preferredElement: 4
+  preferredElement: 0
   prefersResourceTowers: 0
   preferredDetermination: 2
 --- !u!50 &7876693606622092587
@@ -76,8 +76,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
+  m_Mass: 5
+  m_LinearDrag: 10
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -212,4 +212,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  speed: 5
   pathRefresh: 0.25
