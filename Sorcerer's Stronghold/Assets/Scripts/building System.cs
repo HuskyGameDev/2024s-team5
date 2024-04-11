@@ -7,7 +7,7 @@ public class buildingSystem : MonoBehaviour
 {
 
     /*********Script currently does not check for building material requirements 2/21/2024*********/
-    /******Script currently allows you to place on top of things that it did not make 2/21/2024******/
+    /******Script currently allows you to place on top of sprites if they do not have a collider 4/10/2024******/
     /*********Script currently does not give any indication that build mode is active 2/21/2024*********/
 
     /*
@@ -33,6 +33,7 @@ public class buildingSystem : MonoBehaviour
     //variables
     [SerializeField] private List<TowerTypes> towerList;
     [SerializeField] private Rigidbody2D player;
+    GameObject ghostTower;
     private int index = 0;
     private bool buildMode = false;
     [SerializeField] private float buildRange = 8f;
@@ -81,6 +82,36 @@ public class buildingSystem : MonoBehaviour
             index = 2;
         }
 
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        int x = Mathf.RoundToInt(mousePos.x);
+        int y = Mathf.RoundToInt(mousePos.y);
+        Vector2 ghostVector = new Vector2(x, y);
+        if (buildMode)
+        {
+            if (ghostTower == null)
+            {
+                ghostTower = Instantiate(towerList[index].prefab.gameObject, ghostVector, Quaternion.identity);
+                SpriteRenderer sr = ghostTower.GetComponent<SpriteRenderer>();
+                if (sr != null)
+                {
+                    Color c = sr.color;
+                    c.a = 0.5f;
+                    sr.color = c;
+                }
+                
+            }
+        }
+        else
+        {
+            if (ghostTower != null)
+            {
+                Destroy(ghostTower);
+            }
+        }
+        if (buildMode && ghostTower !=null)
+        {
+            ghostTower.transform.position = ghostVector;
+        }
         
         
 
@@ -92,11 +123,7 @@ public class buildingSystem : MonoBehaviour
         if (buildMode && (Input.GetMouseButtonDown(0)))
         {
             //grabs position of mouse and converts it to a position in the world
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            int x = Mathf.RoundToInt(mousePos.x); 
-            int y = Mathf.RoundToInt(mousePos.y);
-            //make sure object is in game area
-           
+            
             //raycast to get game object
             RaycastHit2D buildHit = Physics2D.Raycast(mousePos, Vector2.zero);
             bool canBuild = false;
@@ -114,23 +141,27 @@ public class buildingSystem : MonoBehaviour
                 newTower.tag = "PlayerBuilt"; //current test tower already has tag but for future towers it will be assigned on instantiation
                     
              }
+            else
+            {
+                Debug.Log("Collider hit, can not build here");
+            }
           
             
         }
         if (buildMode && (Input.GetMouseButtonDown (1)))
         {
             //grabs position of mouse
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            int x = Mathf.RoundToInt(mousePos.x);
-            int y = Mathf.RoundToInt(mousePos.y);
+            
             bool canBuild = false;
 
             float distanceFromPlayer = Vector2.Distance(player.position, new Vector2(x, y));
             canBuild = distanceFromPlayer <= buildRange;
             //uses raycast to get actual game object
+            Debug.Log("pre delete raycast");
             RaycastHit2D findIt = Physics2D.Raycast(mousePos, Vector2.zero);
            if(findIt.collider != null && findIt.collider.gameObject.tag == "PlayerBuilt" && canBuild)
            {
+                Debug.Log("Collider hit");
                 Destroy(findIt.collider.gameObject);
                        
            }
