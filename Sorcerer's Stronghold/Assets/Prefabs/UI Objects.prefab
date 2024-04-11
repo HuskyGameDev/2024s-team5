@@ -452,6 +452,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statOverlay: {fileID: 2062841499616214963}
   buildOverlay: {fileID: 986481628921657764}
+  player: {fileID: 0}
+  playerHealthBar: {fileID: 0}
+  crystal: {fileID: 0}
+  crystalHealthBar: {fileID: 0}
 --- !u!1 &986481628921657764
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,7 +1577,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1098798494934555446
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1761,7 +1765,7 @@ GameObject:
   - component: {fileID: 7771372511424495410}
   - component: {fileID: 8817050567745931349}
   m_Layer: 5
-  m_Name: Option 3
+  m_Name: Back Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1868,7 +1872,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7771372511424495410}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 882542992814090028}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: closeOptionsMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6508530527175323552
 GameObject:
   m_ObjectHideFlags: 0
@@ -2563,7 +2579,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Option 3
+  m_text: 'Back
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
