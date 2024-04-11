@@ -69,7 +69,7 @@ public class SpellBook : MonoBehaviour
     private void Update()
     {
         //when the player clicks the mouse cast whatever currentspell is set to
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !this.GetComponent<buildingSystem>().buildModeActive())
         {
             castSpell(currentSpell);
         }
