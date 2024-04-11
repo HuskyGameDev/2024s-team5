@@ -39229,7 +39229,7 @@ MonoBehaviour:
   secondaryStrength: 2
   numberOfCasts: 1
   spellElement: 1
-  cooldownTime: 0
+  cooldownTime: 0.1
   spellSpeed: 5
   decayTime: 1
 --- !u!114 &6649895063501095970
@@ -44772,7 +44772,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8526368397076856956
 Transform:
   m_ObjectHideFlags: 0
