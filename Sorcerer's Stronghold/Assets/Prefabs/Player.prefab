@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2341e1e860672644b389060208880fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  virtualCamera: {fileID: 0}
+  virtualCamera: {fileID: 8825653308340928483}
   minZoom: 4
   maxZoom: 6
 --- !u!114 &5170338952845715336
