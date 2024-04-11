@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Rendering.FilterWindow;
+// using static UnityEditor.Rendering.FilterWindow;
 
 public class EffectBase : MonoBehaviour
 {

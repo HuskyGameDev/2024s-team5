@@ -2,7 +2,7 @@ using Stronghold.Base;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Search;
+// using UnityEditor.Search;
 using UnityEngine;
 
 //this will go on a prefab object and should probably be used through the spellbook
