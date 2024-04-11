@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 123143993917355069}
   - component: {fileID: 5170338952845715336}
   - component: {fileID: 7373144479568617597}
+  - component: {fileID: 24263575723215061}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -316,6 +317,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spell: {fileID: 7886798484863863962, guid: 0d031e3d648b3494785c0fa372f6d123, type: 3}
+--- !u!114 &24263575723215061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4865924930639949326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe1044a0cd5dfdb438034ef417d47554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 11400000, guid: aef6c215247de674091179f1f5310606, type: 2}
 --- !u!1 &7254687725671895171
 GameObject:
   m_ObjectHideFlags: 0

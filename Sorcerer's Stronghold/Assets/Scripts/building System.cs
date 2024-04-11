@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using Stronghold.Base;
 
 public class buildingSystem : MonoBehaviour
 {
@@ -42,6 +43,10 @@ public class buildingSystem : MonoBehaviour
     void Start()
     {
   
+    }
+
+    public bool buildModeActive(){
+        return buildMode;
     }
 
     //**
@@ -90,7 +95,7 @@ public class buildingSystem : MonoBehaviour
         {
             if (ghostTower == null)
             {
-                ghostTower = Instantiate(towerList[index].prefab.gameObject, ghostVector, Quaternion.identity);
+                ghostTower = Instantiate(towerList[index].shadow, ghostVector, Quaternion.identity);
                 SpriteRenderer sr = ghostTower.GetComponent<SpriteRenderer>();
                 if (sr != null)
                 {
@@ -140,7 +145,7 @@ public class buildingSystem : MonoBehaviour
 
                 Debug.Log("No collider hit. Can build here.");
                 //build it
-                GameObject newTower = Instantiate(towerList[index].prefab.gameObject, new Vector2(x, y), Quaternion.identity);
+                GameObject newTower = Instantiate(towerList[index].prefab, new Vector2(x, y), Quaternion.identity);
                 newTower.name = "Tower: " + (x) + "_" + (y );
                 newTower.tag = "PlayerBuilt"; //current test tower already has tag but for future towers it will be assigned on instantiation
                     
@@ -168,6 +173,7 @@ public class buildingSystem : MonoBehaviour
            {
                 Debug.Log("Collider hit time to delete");
                 Debug.Log(findIt.rigidbody);
+                Data.database.towers.Remove(findIt.collider.gameObject.GetComponent<TowerBase>());
                 Destroy(findIt.collider.gameObject);
                        
            }

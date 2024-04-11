@@ -5,5 +5,6 @@ using UnityEngine;
 [CreateAssetMenu()]
 public class TowerTypes : ScriptableObject
 {
-   public Transform prefab;
+   public GameObject prefab;
+   public GameObject shadow;
 }

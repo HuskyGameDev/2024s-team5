@@ -55,7 +55,7 @@ MonoBehaviour:
   health: 100
   speed: 0.5
   damage: 10
-  element: 4
+  element: 0
   resistanceFactor: 0.5
   vulnerableFactor: 1.5
   attackRange: 1.8
